@@ -22,9 +22,9 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Real-Time Notes Editor</h1>
-      <div>
+    <div className="app-container">
+      <h1 id='app-title'>Real-Time Notes Editor</h1>
+      <div className='input-form'>
         <input
           type="text"
           placeholder='Note title'
@@ -38,6 +38,7 @@ function App() {
               }
             )
           }
+          className='input-field'
         />
         <textarea
           placeholder='Note content'
@@ -50,8 +51,9 @@ function App() {
               }
             )
           }
+          className="input-textarea"
         />
-        <button onClick={handleSubmitNote}>Add Note</button>
+        <button onClick={handleSubmitNote} className='btn-submit'>Add Note</button>
         <br />
       </div>
       <div className="notes-list">
@@ -68,7 +70,7 @@ function App() {
           </div>
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 
