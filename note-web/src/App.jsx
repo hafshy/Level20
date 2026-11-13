@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -8,6 +8,20 @@ function App() {
   });
   const [notes, setNotes] = useState([]);
   const titleRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+
+  // save to LocalStorage
+  useEffect(() => {
+    if (!loaded) return;
+    localStorage.setItem("notes", JSON.stringify(notes))
+  }, [notes]);
+
+  // load from localStorage
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    setNotes(storedNotes)
+    setLoaded(true);
+  }, []);
 
   function handleSubmitNote() {
     if (currentNote.title.trim() && currentNote.content.trim()) {
